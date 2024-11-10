@@ -20,7 +20,7 @@ def get_ip_val(t):
         return float(ip_val)
     
     elif t == 2:
-        ip_val = input()
+        ip_val = input("")
 
 def input_values():
 
