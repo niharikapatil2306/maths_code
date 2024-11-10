@@ -15,12 +15,28 @@ def get_ip_type():
             print("Invalid input. \nPlease enter 1, 2, or 3.")
 
 def get_ip_val(t):
-    if t == 1:
-        ip_val = input("Enter the scalar value: ")
+    if t == "1":
+        ip_val = input("Enter the scalar value: \n")
         return float(ip_val)
     
-    elif t == 2:
-        ip_val = input("")
+    elif t == "2":
+        ip_val = input("Enter the vector values (use comma's to separate values): \n")
+        ip_val = [float(x) for x in ip_val.split(',') ]
+        return sy.Matrix([ip_val])
+    
+    elif t == '3':
+        rows = int(input("Enter number of rows for matrix \n"))
+        cols = int(input("Enter number of columns for matrix \n"))
+        ip_val=[]
+
+        for row in range(rows):
+            r = input(f"Enter {cols} values for row {row+1} (use comma's to separate values): \n ")
+            r = [float(x) for x in r.split(',') ]
+            if len(r) != cols:
+                raise InvalidInputError(f"Row {row + 1} must have {cols} values. Please try again.")
+            ip_val.append(r)
+
+        return sy.Matrix(ip_val)
 
 def input_values():
 
@@ -30,13 +46,12 @@ def input_values():
 
     ip_type = get_ip_type()
 
-
-
-    print(ip_type)
-    ip_val = input(f'Enter value for varibale {ip_var.name}\n')
+    ip_val = get_ip_val(ip_type)
 
     print(f"{ip_var}= {ip_val}")
 
+def math_funcs(ip):
+    return 1
 
 input_values()
 
